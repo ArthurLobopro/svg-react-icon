@@ -1,0 +1,31 @@
+{
+  "name": "svg-react-icon",
+  "version": "1.0.0",
+  "description": "Simple svg to react converter for icons",
+  "scripts": {
+    "build": "tsc",
+    "test": "node ./test/index.js"
+  },
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "keywords": [],
+  "author": "Arthur Lobo",
+  "license": "MIT",
+  "dependencies": {
+    "@svgr/core": "6.5.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.3",
+    "typescript": "^5.0.4"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ]
+}
