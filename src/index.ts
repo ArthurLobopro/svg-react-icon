@@ -1,16 +1,19 @@
+import { transform } from "@svgr/core"
 import fs from "node:fs"
 import path from "node:path"
-import { transform } from "@svgr/core"
 
 interface generateIconsOptions {
     srcDir: string
     outDir: string
     exporterPath: string
+    memo?: boolean
 }
 
 export async function generateIcons(options: generateIconsOptions) {
     const assets_path = path.normalize(options.srcDir)
     const icons_out = path.normalize(options.outDir)
+
+    const { memo = true } = options
 
     const icon_exporter_path = path.normalize(options.exporterPath)
 
@@ -54,7 +57,8 @@ export async function generateIcons(options: generateIconsOptions) {
                 typescript: true,
                 expandProps: "end",
                 titleProp: true,
-                jsx: {}
+                jsx: {},
+                memo
             },
             { componentName: component_name }
         )

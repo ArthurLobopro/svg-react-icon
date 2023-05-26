@@ -9,5 +9,5 @@ const out = path.resolve(__dirname, "./out")
 generateIcons({
     srcDir: src,
     outDir: out,
-    exporterPath: path.resolve(__dirname, "./exporter.js"),
+    exporterPath: path.resolve(__dirname, "./out/index.js"),
 })
