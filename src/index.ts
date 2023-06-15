@@ -7,13 +7,23 @@ interface generateIconsOptions {
     outDir: string
     exporterPath: string
     memo?: boolean
+    resolveComponentName?: (filename: string) => string
+}
+
+export function defaultResolveComponentName(filename: string) {
+    return filename
+        .replace(/-([a-z])/g, (g) => g[1].toUpperCase())
+        .replace(/^[a-z]/, (g) => g.toUpperCase())
 }
 
 export async function generateIcons(options: generateIconsOptions) {
     const assets_path = path.normalize(options.srcDir)
     const icons_out = path.normalize(options.outDir)
 
-    const { memo = true } = options
+    const {
+        memo = true,
+        resolveComponentName = defaultResolveComponentName
+    } = options
 
     const icon_exporter_path = path.normalize(options.exporterPath)
 
@@ -42,10 +52,7 @@ export async function generateIcons(options: generateIconsOptions) {
 
     for (const icon of icons) {
         const icon_name = path.basename(icon, ".svg")
-        const component_name =
-            icon_name
-                .replace(/-([a-z])/g, (g) => g[1].toUpperCase())
-                .replace(/^[a-z]/, (g) => g.toUpperCase())
+        const component_name = resolveComponentName(icon_name)
 
         const svg_content = fs.readFileSync(icon, "utf-8")
 
@@ -65,8 +72,12 @@ export async function generateIcons(options: generateIconsOptions) {
 
         fs.writeFileSync(path.resolve(icons_out, `${component_name}.tsx`), component_content)
 
-        export_list.push(`export * from "./${relative_path}/${component_name}"`)
+        export_list.push(`export * from "./${relative_path}/${component_name}"`.replace(/\/\//g, "/"))
     }
 
-    fs.writeFileSync(icon_exporter_path, export_list.join("\n"), { encoding: "utf-8" })
+    fs.writeFileSync(
+        icon_exporter_path,
+        export_list.join("\n"),
+        { encoding: "utf-8" }
+    )
 }
