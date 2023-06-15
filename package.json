@@ -1,10 +1,11 @@
 {
   "name": "svg-react-icon",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simple svg to react converter for icons",
   "scripts": {
     "build": "tsc",
-    "test": "node ./test/index.js"
+    "test": "yarn tsc && node ./test/index.js",
+    "prepack": "tsc"
   },
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
