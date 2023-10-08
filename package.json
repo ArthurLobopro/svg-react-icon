@@ -1,6 +1,6 @@
 {
   "name": "svg-react-icon",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Simple svg to react converter for icons",
   "scripts": {
     "build": "tsc",
