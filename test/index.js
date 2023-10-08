@@ -8,7 +8,7 @@ const src = path.resolve(__dirname, "./svg")
 const out = path.resolve(__dirname, "./out")
 
 if (fs.existsSync(out)) {
-    fs.rmdirSync(out, { recursive: true })
+    fs.rmSync(out, { recursive: true })
 }
 
 fs.mkdirSync(out)
@@ -16,5 +16,6 @@ fs.mkdirSync(out)
 generateIcons({
     srcDir: src,
     outDir: out,
-    exporterPath: path.resolve(__dirname, "./out/index.js")
+    exporterPath: path.resolve(__dirname, "./out/index.ts"),
+    exporterFinalBlankLine: true
 })
