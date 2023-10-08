@@ -6,6 +6,7 @@ interface generateIconsOptions {
     srcDir: string
     outDir: string
     exporterPath: string
+    exporterFinalBlankLine?: boolean
     memo?: boolean
     resolveComponentName?: (filename: string) => string
 }
@@ -73,6 +74,10 @@ export async function generateIcons(options: generateIconsOptions) {
         fs.writeFileSync(path.resolve(icons_out, `${component_name}.tsx`), component_content)
 
         export_list.push(`export * from "./${relative_path}/${component_name}"`.replace(/\/\//g, "/"))
+    }
+
+    if (options.exporterFinalBlankLine) {
+        export_list.push("")
     }
 
     fs.writeFileSync(
