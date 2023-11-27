@@ -66,7 +66,8 @@ export async function generateIcons(options: generateIconsOptions) {
                 expandProps: "end",
                 titleProp: true,
                 jsx: {},
-                memo
+                memo,
+                plugins: ["@svgr/plugin-jsx"]
             },
             { componentName: component_name }
         )
