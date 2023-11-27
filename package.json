@@ -13,7 +13,8 @@
   "author": "Arthur Lobo",
   "license": "MIT",
   "dependencies": {
-    "@svgr/core": "6.5.1"
+    "@svgr/core": "7.0.0",
+    "@svgr/plugin-jsx": "^8.1.0"
   },
   "devDependencies": {
     "@types/node": "^18.16.3",
